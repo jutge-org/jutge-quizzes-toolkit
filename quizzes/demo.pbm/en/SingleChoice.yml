@@ -1,0 +1,15 @@
+
+type: SingleChoice
+
+text: "What is the result of the evaluation of `$a + $b`?"
+
+choices:
+    -   text: "`$s1`"
+        correct: true
+        hint: "You did well"
+    -   text: "`$s2`"
+        hint: "Sorry..."
+    -   text: "`$s3`"
+        hint: "Think a bit!"
+    -   text: "`$s4`"
+    -   text: "`$s5`"

@@ -1,0 +1,6 @@
+
+type: OpenQuestion
+
+text: Talk about your self.
+
+placeholder: 'My name is **$name** and I want to pass this course.'
