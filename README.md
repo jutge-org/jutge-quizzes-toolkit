@@ -54,7 +54,7 @@ questions:
 
 Each quiz must pe provided with a title, a statement and a list of questions. Each question has a title, a file and a score. The score of all the questions in a quiz must add 100 points. The file of a question must be the name of the `.yml` file that describes it. In this example we must have a `question1.yml` and a `question2.yml` in the same directory as our `quiz.yml`.
 
-#### Questions
+### Questions
 Each question is described in a `questionName.yml` file. This file must specify a `text` for the statement. Any text in the question can be generated randomly using python language. A `questionName.py` file can be created for each question, and the value of variables after the execution of the script will be swapped for expressions like ``` `$a + $b` ``` in the `questionName.yml` file, where `a` and `b` are variables defined in `questionName.py`.
 > Check the demo directory for more examples and uses of this feature.
 The other mandatory attribute is the `type` of the question, which can be described in the following way:
