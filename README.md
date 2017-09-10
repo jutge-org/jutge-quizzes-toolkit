@@ -62,9 +62,15 @@ The other mandatory attribute is the `type` of the question, which can be descri
 
 * `SingleChoice`: A question with multiple pre-defined answers where only one is true. Each answer must have a `text` field and can have a `hint` field with text to be displayed if that answer is chosen. There must be one and only one choice with a `correct: true` attribute.
 * `MultipleChoice`: A question with multiple pre-defined answers where one or more of them are true. Each answer must have a `text` field and can optionally have a `hint` field with text to be displayed if that answer is chosen. There can be more than one choice with a `correct: true` attribute.
-* `FillIn`: A fill-in-the-blanks question with a `context` and a list of `items`. 
-  * `context`: is a text where some words are replaced with the attributes in the item list.
-  * `items`: describe a blank space where the student can type the answer or a dropdown list with multiple pre-defined choices. A blank space has a `correct` answer, a `maxlength` field where an integer marks the maximum length of the answer [... TO DO !!! ...] and a list of other possible `options`.
+* `FillIn`: A fill-in-the-blanks question with a `context` and a list of `items`:
+  * `context`: is a text where some words are replaced with the attributes in the item list.
+  * `items`: can be either a blank space where the student can type the answer or a dropdown list with multiple pre-defined choices. A blank space has the following attributes:
+    * `correct`: describes the correct answer.
+    * `maxlength`: integer maximum length of the answer.
+    * `placeholder`: `OPTIONAL` text to display when the answer is blank. Default is `?`.
+    * `ignorecase`: `OPTIONAL` indicates
+    
+    list of other possible `options`.
 * `Ordering`:
 * `Matching`:
 * `OpenQuestion`:
