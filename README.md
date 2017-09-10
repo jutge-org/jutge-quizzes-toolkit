@@ -57,6 +57,7 @@ Each quiz must pe provided with a title, a statement and a list of questions. Ea
 ### Questions
 Each question is described in a `questionName.yml` file. This file must specify a `text` for the statement. Any text in the question can be generated randomly using python language. A `questionName.py` file can be created for each question, and the value of variables after the execution of the script will be swapped for expressions like ``` `$a + $b` ``` in the `questionName.yml` file, where `a` and `b` are variables defined in `questionName.py`.
 > Check the demo directory for more examples and uses of this feature.
+
 The other mandatory attribute is the `type` of the question, which can be described in the following way:
 
 * `SingleChoice`: A question with multiple pre-defined answers where only one is true. Each answer must have a `text` field and can have a `hint` field with text to be displayed if that answer is chosen. There must be one and only one choice with a `correct: true` attribute.
