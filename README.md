@@ -98,9 +98,45 @@ choices:
     A dropdown list of items has the following attributes:
       * `correct`: describes the correct answer.
       * `options`: a list of all the other possible answers that are not correct.
+      
+  > For code examples on FillIn questions please check the `quizzes/demo.pbm/en` folder.
+      
 * `Ordering`: A question with a list of `items` that has to be permutated to a specific order. The `label` attribute expects a text which will be the title of the box containing the items.
+```yml
+type: Ordering
+text: Drag and drop the item to place the list in alfabetic order.
+label: Programming language
+items:
+    - A
+    - B
+    - C
+    - D
+    - F
+    - Z
+```
+
 * `Matching`: A match between pairs of items in two lists. An attribute `labels` is needed, with two titles for the left and right boxes. A `left` and a `right` list of items is needed, with the same number of elements in each one.
+```yml
+type: Matching
+text: Match the lower case with their capitals.
+labels:
+    - Lower Case
+    - Capitals
+left:
+    - p
+    - b
+    - m
+right:
+    - P
+    - B
+    - M
+```
 * `OpenQuestion`: A simple text field where anything can be written. The open question has only a `placeholder` attribute which is the text dsplayed in the answer box as a hint to the student.
+```yml
+type: OpenQuestion
+text: What is your name/quest/favourite color? 
+placeholder: 'My name is Arthur, I want to pass this course and blue. No, yel... '
+```
 
 > Examples for all question templates can be found in the `quizzes/demo.pbm/en` folder.
 
