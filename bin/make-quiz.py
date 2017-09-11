@@ -40,7 +40,15 @@ def build_q(fname):
         for item in output["items"].values():
             if 'options' in item and item.get('shuffle', True):
                 random.shuffle(item['options'])
-
+    elif output["type"] == "Ordering":
+        # shuffle items if needed
+        if 'items' in output and output.get('shuffle', True):
+            random.shuffle(output['items'])
+    elif output["type"] == "Matching":
+        if 'left' in output and output.get('shuffle', True):
+            random.shuffle(output['left'])
+        if 'right' in output and output.get('shuffle', True):
+            random.shuffle(output['right'])
     # return the output
     return output
 
