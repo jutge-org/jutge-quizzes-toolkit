@@ -63,7 +63,29 @@ Each question is described in a `questionName.yml` file. This file must specify 
 The other mandatory attribute is the `type` of the question, which can be described in the following way:
 
 * `SingleChoice`: A question with multiple pre-defined answers where only one is true. Each answer must have a `text` field and can have a `hint` field with text to be displayed if that answer is chosen. There must be one and only one choice with a `correct: true` attribute.
+```yml
+type: SingleChoice
+text: "The statement of the question"
+choices:
+    -   text: "Correct answer"
+        correct: true
+        hint: "You did well!"
+    -   text: ""Nearly correct answer`"
+        hint: "Sorry..."
+    -   text: "Wrong answer"
+```
 * `MultipleChoice`: A question with multiple pre-defined answers where one or more of them are true. Each answer must have a `text` field and can optionally have a `hint` field with text to be displayed if that answer is chosen. There can be more than one choice with a `correct: true` attribute.
+```yml
+type: MultipleChoice
+text: "Which of the following are true?"
+choices:
+    -   text: "1 + 1 = 2"
+        correct: true
+    -   text: "`$s != $a + $b`"
+        hint: "Sorry..."
+    -   text: "`$a + $b >= $s`"
+        correct: true
+```
 * `FillIn`: A fill-in-the-blanks question with a `context` and a list of `items`:
   * `context`: is a text where some words are replaced with the attributes in the item list.
   * `items`: can be either a blank space where the student can type the answer or a dropdown list with multiple pre-defined choices. A blank space has the following attributes:
