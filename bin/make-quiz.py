@@ -8,7 +8,7 @@ import sys, string, pprint, yaml, json, random, os, time
 
 def error(title,reason):
     raise Exception('--- ERROR in question '+title+' --- '+reason)
-    
+
 # function to build Single Choice questions
 def build_sc(output, title):
     #make sure choices are provided
@@ -22,7 +22,7 @@ def build_sc(output, title):
         #check that at most one correct answer is provided
         if choice.get("correct", False):
             if correct:
-                error(title,'--- Only one correct answer must be provided!')
+                error(title,'Only one correct answer must be provided!')
             correct = True
     #check that at least one correct answer is provided
     if not correct:
@@ -39,7 +39,7 @@ def build_sc(output, title):
 def build_mc(output, title):
     #make sure choices are provided
     if not output.get("choices",False):
-        error(title,''+title+' --- A list of Choices must be defined!')
+        error(title,'A list of Choices must be defined!')
     
     #make sure each choice has text
     correct = False
@@ -50,7 +50,7 @@ def build_mc(output, title):
         if choice.get("correct", False):
             correct = True
     if not correct:
-        error(title,'in question '+title+' --- At least one correct answer must be provided!')
+        error(title,'At least one correct answer must be provided!')
 
     #shuffle the choices if needed
     if (output.get('shuffle', True)):
@@ -61,15 +61,59 @@ def build_mc(output, title):
 
 # function to build Ordering questions
 def build_o(output, title):
+    #check non empty label
+    if output.get("label") == None:
+        error(title,'A label for the choice list must be provided!')
+    #check non empty items
+    items = output.get("items", False)
+    if not items:
+        error(title,'A list of items must be provided!')
     return output
+
+def check_writable_item(item, title):
+    #check for mandatory fields
+    if item.get("maxlength") == None:
+        error(title,'Invalid item! Did you forget the list of options or maxlength?')
+    if item.get("correct") == None:
+        error(title,'All correct answers must be provided!')
+    item.update({'ignorecase' : item.get("ignorecase", True), 'trim' : item.get("trim", True), 'placeholder' : item.get("placeholder", '?')})
+    # ??? placeholder es opcional ??? TBD
+
+def check_dropdown_item(item, title):
+    if item.get("correct") == None:
+        error(title,'All correct answers must be provided!')
+    if item.get("options") == None:
+        error(title,'A list of options must be provided!')
+    #check that the correct option is available
+    correct = False
+    for option in item.get("options"):
+        if option == item.get("correct"):
+            correct = True
+    # !!! potser podriem cambiar la manera de llegir opcions per no haver d'escriure la correcta a la llista tambe
+    if not correct:
+        error(title, "All correct answers must be in the options!")
 
 # function to build FillIn questions
 def build_fi(output, title):
+    #check non empty context
+    if not output.get("context", False):
+        error(title,'A context must be provided!')
+    #check non empty items
+    if not output.get("items", False):
+        error(title,'An item list must be provided!')
+    for item in output["items"]:
+        if not output["items"].get(item).get("options", False):
+            check_writable_item(output["items"].get(item), title)
+        else:
+            check_dropdown_item(output["items"].get(item), title)
     return output
 
 
 # function to build Matching questions
 def build_m(output, title):
+    #check for labels, left and right
+    
+    #make sure left and right have the same size
     return output
 
 
