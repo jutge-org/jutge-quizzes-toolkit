@@ -6,7 +6,78 @@
 
 import sys, string, pprint, yaml, json, random, os, time
 
-def build_q(fname):
+def error(title,reason):
+    raise Exception('--- ERROR in question '+title+' --- '+reason)
+    
+# function to build Single Choice questions
+def build_sc(output, title):
+    #make sure choices are provided
+    if not output.get("choices",False):
+        error(title,'A list of Choices must be defined!')
+    #make sure each choice has text
+    correct = False
+    for choice in output["choices"]:
+        if not choice.get("text", False):
+            error(title,'Text must be provided for every choice!')
+        #check that at most one correct answer is provided
+        if choice.get("correct", False):
+            if correct:
+                error(title,'--- Only one correct answer must be provided!')
+            correct = True
+    #check that at least one correct answer is provided
+    if not correct:
+        error(title,'A correct answer must be provided!')
+
+    #shuffle the choices if needed
+    if (output.get('shuffle', True)):
+        random.shuffle(output['choices'])
+
+    return output
+
+
+# function to build Multiple Choice questions
+def build_mc(output, title):
+    #make sure choices are provided
+    if not output.get("choices",False):
+        error(title,''+title+' --- A list of Choices must be defined!')
+    
+    #make sure each choice has text
+    correct = False
+    for choice in output["choices"]:
+        if not choice.get("text", False):
+            error(title,'Text must be provided for every choice!')
+        #check that at least one correct answer is provided
+        if choice.get("correct", False):
+            correct = True
+    if not correct:
+        error(title,'in question '+title+' --- At least one correct answer must be provided!')
+
+    #shuffle the choices if needed
+    if (output.get('shuffle', True)):
+        random.shuffle(output['choices'])
+
+    return output
+
+
+# function to build Ordering questions
+def build_o(output, title):
+    return output
+
+# function to build FillIn questions
+def build_fi(output, title):
+    return output
+
+
+# function to build Matching questions
+def build_m(output, title):
+    return output
+
+
+# function to build Open Questions
+def build_oq(output, title):
+    return output
+
+def build_q(fname, title):
 
     py_name = fname + ".py"
     yml_name = fname + ".yml"
@@ -31,7 +102,20 @@ def build_q(fname):
     output = yaml.load(subs)
 
     # fix fields according to type
-    if output["type"] in ["SingleChoice", "MultipleChoice"]:
+    if output["type"] == "SingleChoice":
+        return build_sc(output, title)
+    elif output["type"] == "MultipleChoice":
+        return build_mc(output, title)
+    elif output["type"] == "Ordering":
+        return build_o(output, title)
+    elif output["type"] == "FillIn":
+        return build_fi(output, title)
+    elif output["type"] == "Matching":
+        return build_m(output, title)
+    elif output["type"] == "OpenQuestion":
+        return build_oq(output, title)
+
+"""
         # shuffle choices if needed
         if 'choices' in output and output.get('shuffle', True):
             random.shuffle(output['choices'])
@@ -41,8 +125,8 @@ def build_q(fname):
             if 'options' in item and item.get('shuffle', True):
                 random.shuffle(item['options'])
     elif output["type"] == "Ordering":
-        # shuffle items if needed
-        if 'items' in output and output.get('shuffle', True):
+        # shuffle items always because otherwise the question is already correct
+        if 'items' in output:
             random.shuffle(output['items'])
     elif output["type"] == "Matching":
         if 'left' in output and output.get('shuffle', True):
@@ -50,7 +134,7 @@ def build_q(fname):
         if 'right' in output and output.get('shuffle', True):
             random.shuffle(output['right'])
     # return the output
-    return output
+    return output"""
 
 
 def main():
@@ -67,7 +151,7 @@ def main():
 
     for question in quiz['questions']:
         random.seed(seed)
-        question['q'] = build_q(question['file'])
+        question['q'] = build_q(question['file'], question['title'])
         question['a'] = {}
         question['points'] = 0
 
