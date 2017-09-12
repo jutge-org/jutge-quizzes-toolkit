@@ -112,13 +112,19 @@ def build_fi(output, title):
 # function to build Matching questions
 def build_m(output, title):
     #check for labels, left and right
-    
+    if not output.get("labels", False) or len(output["labels"]) != 2:
+        error(title, "A list with two labels must be provided!")
+    if not output.get("left", False) or not output.get("right", False):
+        error(title, "Two lists (right and left) must be provided!")
     #make sure left and right have the same size
+    if len(output.get("right")) != len(output.get("left")):
+        error(title,"The right and left lists must have the same size")
     return output
 
 
 # function to build Open Questions
 def build_oq(output, title):
+    #this is always good i guess
     return output
 
 def build_q(fname, title):
@@ -145,6 +151,12 @@ def build_q(fname, title):
     # get the text back to data
     output = yaml.load(subs)
 
+    #make sure we have the mandatory attributes
+    if output.get("text") == None:
+        error(title, "Missing text!")
+    if output.get("type") == None:
+        error(title, "Missing type!")
+
     # fix fields according to type
     if output["type"] == "SingleChoice":
         return build_sc(output, title)
@@ -158,27 +170,8 @@ def build_q(fname, title):
         return build_m(output, title)
     elif output["type"] == "OpenQuestion":
         return build_oq(output, title)
-
-"""
-        # shuffle choices if needed
-        if 'choices' in output and output.get('shuffle', True):
-            random.shuffle(output['choices'])
-    elif output["type"] == "FillIn":
-        # shuffle options for all items
-        for item in output["items"].values():
-            if 'options' in item and item.get('shuffle', True):
-                random.shuffle(item['options'])
-    elif output["type"] == "Ordering":
-        # shuffle items always because otherwise the question is already correct
-        if 'items' in output:
-            random.shuffle(output['items'])
-    elif output["type"] == "Matching":
-        if 'left' in output and output.get('shuffle', True):
-            random.shuffle(output['left'])
-        if 'right' in output and output.get('shuffle', True):
-            random.shuffle(output['right'])
-    # return the output
-    return output"""
+    else:
+       error(title, "Incorrect question type!")
 
 
 def main():
@@ -193,11 +186,17 @@ def main():
     quiz['seed'] = seed
     quiz['time-generation'] = time.ctime()  # !!! posar format YYYY-MM-DD HH:MM:SS
 
+    score_sum = 0
     for question in quiz['questions']:
         random.seed(seed)
+        score_sum += question.get("score", 0)
+        if not question.get("file", False) or not question.get("title", False):
+            error("quiz","All questions need a file and a title!")
         question['q'] = build_q(question['file'], question['title'])
         question['a'] = {}
         question['points'] = 0
+    if score_sum != 100:
+        error("quiz", "Scores don't add to 100!!!")
 
     json.dump(quiz, sys.stdout, indent=4)
 
