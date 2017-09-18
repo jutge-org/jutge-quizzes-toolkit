@@ -18,10 +18,7 @@ context: |
 items:
     XXXX:
         maxlength: 5
-        placeholder: "?"
         correct: 0
-        ignorecase: true
-        trim: true
     YYYY:
         correct: "+"
         options:
