@@ -1,0 +1,29 @@
+
+type: FillIn
+
+text: |
+
+    Fill in the blanks of the given program so that it computes the sum of a list of numbers.
+
+context: |
+
+    ```python
+    def sum (L):
+        s = XXXX
+        for x in L:
+            s = s YYYY x
+        return s
+    ```
+
+items:
+    XXXX:
+        maxlength: 5
+        correct: 0
+    YYYY:
+        correct: "+"
+        options:
+             - "+"
+             - "-"
+             - "*"
+             - "/"
+             - "."

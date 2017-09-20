@@ -1,0 +1,53 @@
+
+type: FillIn
+
+text: "Fill in the blanks."
+
+context: |
+
+    A/An S1 is a self-contained step-by-step set of operations to be performed to solve a problem.
+
+    A/An S2 is a collection of instructions that performs a specific task when executed by a computer.
+
+    The six stages of program development in logical order are: S3
+
+    Algorithms never must be S4.
+
+
+
+items:
+    S1:
+        correct: algorithm
+        options:
+           - program
+           - algorithm
+           - pseudocode
+           - recipe
+           - judge
+
+    S2:
+        correct: program
+        options:
+           - program
+           - algorithm
+           - pseudocode
+           - recipe
+           - judge
+
+
+    S3:
+        correct: "Define, Analyze, Develop, Write, Test and Debug, Document"
+        options:
+           - "Define, Analyze, Write, Test, Document, Debug"
+           - "Define, Analyze, Develop, Write, Test and Debug, Document"
+           - "Define, Write, Develop, Analyze, Test, Document"
+           - "Define, Develop, Write, Test, Document, Debug"
+
+    S4:
+        correct: ambiguous
+        options:
+            - logical
+            - ambiguous
+            - consice
+            - precise
+

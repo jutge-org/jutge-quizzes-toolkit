@@ -1,0 +1,12 @@
+
+type: MultipleChoice
+
+text: "Which of the following expressions are `true`?"
+
+choices:
+    -   text: "`$s == $a + $b`"
+        correct: true
+    -   text: "`$s != $a + $b`"
+        hint: "Sorry..."
+    -   text: "`$a + $b >= $s`"
+        correct: true
