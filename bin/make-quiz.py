@@ -7,7 +7,7 @@
 import sys, string, pprint, yaml, json, random, os, time
 
 def error(title,reason):
-    raise Exception('--- ERROR in question '+title+' --- '+reason)
+    raise Exception('--- ERROR in question '+str(title)+' --- '+reason)
 
 # function to build Single Choice questions
 def build_sc(output, title):
@@ -97,7 +97,7 @@ def build_fi(output, title):
     #check non empty items
     if not output.get("items", False):
         error(title,'An item list must be provided!')
-    for name, item in output["items"].iteritems():
+    for name, item in output["items"].items():
         if not name in context:
             error(title, "Item "+name+" is not in the context!")
         if not item.get("options", False):
