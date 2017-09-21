@@ -194,9 +194,10 @@ def build_q(fname, title):
 
     # read the question description
     q = open(yml_name).read()
+    question_seed = random.randint(1, sys.maxsize-1)
 
     # execute the code, using new global and local dictionaries
-    ldict = {}
+    ldict = {'seed': question_seed}
     exec(code, globals(), ldict)
 
     # modify the question description with the local dictionary
@@ -204,7 +205,7 @@ def build_q(fname, title):
 
     # get the text back to data
     output = yaml.load(subs)
-
+    output['question_seed'] = question_seed
     #make sure we have the mandatory attributes
     text = output.get("text")
     if text == None:
@@ -260,7 +261,6 @@ def main():
 
     score_sum = 0
     for question in quiz['questions']:
-        random.seed(seed)
         score = question.get("score", 0)
         if not isinstance(score,int):
             error("quiz", "All scores must be integers")
