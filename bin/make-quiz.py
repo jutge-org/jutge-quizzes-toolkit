@@ -7,7 +7,7 @@
 import sys, string, pprint, yaml, json, random, os, time
 
 def error(title,reason):
-    raise Exception('--- ERROR in question '+str(title)+' --- '+reason)
+    raise Exception('--- ERROR in question '+str(title)+' --- '+str(reason))
 
 # function to build Single Choice questions
 def build_sc(output, title):
@@ -99,7 +99,7 @@ def build_fi(output, title):
         error(title,'An item list must be provided!')
     for name, item in output["items"].items():
         if not name in context:
-            error(title, "Item "+name+" is not in the context!")
+            error(title, "Item "+ str(name) +" is not in the context!")
         if not item.get("options", False):
             check_writable_item(item, title)
         else:
@@ -183,8 +183,8 @@ def build_oq(output, title):
 
 def build_q(fname, title):
 
-    py_name = fname + ".py"
-    yml_name = fname + ".yml"
+    py_name = str(fname) + ".py"
+    yml_name = str(fname) + ".yml"
 
     # read the python code
     if os.path.exists(py_name):
@@ -235,11 +235,11 @@ def build_q(fname, title):
 #so many arguments :(
 def check_not_dict_list(thing,title,name,goal):
     if isinstance(thing, list) or isinstance(thing,dict):
-        error(title, name+" must be a "+goal+"!")
+        error(title, str(name) +" must be a "+ str(goal) +"!")
 
 def check_list(thing,title,name):
     if not isinstance(thing, list):
-        error(title, name+" must be a list!")
+        error(title, str(name) +" must be a list!")
 
 def main():
     seed = int(sys.argv[1])
@@ -260,8 +260,8 @@ def main():
     score_sum = 0
     for question in quiz['questions']:
         score = question.get("score", 0)
-        if not isinstance(score,int):
-            error("quiz", "All scores must be integers")
+        if not isinstance(score,int) or score <= 0:
+            error("quiz", "All scores must be positive integers")
         score_sum += score
         if not question.get("file", False) or not question.get("title", False):
             error("quiz","All questions need a file and a title!")
