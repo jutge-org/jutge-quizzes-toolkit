@@ -194,10 +194,9 @@ def build_q(fname, title):
 
     # read the question description
     q = open(yml_name).read()
-    question_seed = random.randint(1, sys.maxsize-1)
 
     # execute the code, using new global and local dictionaries
-    ldict = {'seed': question_seed}
+    ldict = {}
     exec(code, globals(), ldict)
 
     # modify the question description with the local dictionary
