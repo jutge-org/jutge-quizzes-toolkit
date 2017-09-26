@@ -204,7 +204,6 @@ def build_q(fname, title):
 
     # get the text back to data
     output = yaml.load(subs)
-    output['question_seed'] = question_seed
     #make sure we have the mandatory attributes
     text = output.get("text")
     if text == None:
