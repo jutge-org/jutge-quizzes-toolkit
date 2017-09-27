@@ -57,9 +57,6 @@ Each quiz must pe provided with a title, a statement and a list of questions. Ea
 ### Questions
 Each question is described in a `questionName.yml` file. This file must specify a `text` for the statement. Any text in the question can be generated randomly using python language. A `questionName.py` file can be created for each question, and the value of variables after the execution of the script will be swapped for expressions like ``` `$a + $b` ``` in the `questionName.yml` file, where `a` and `b` are variables defined in `questionName.py`.
 
-
-> Check the demo directory for more examples and uses of this feature.
-
 The other mandatory attribute is the `type` of the question, which can be described in the following way:
 
 * `SingleChoice`: A question with multiple pre-defined answers where only one is true. Each answer must have a `text` field and can have a `hint` field with text to be displayed if that answer is chosen. There must be one and only one choice with a `correct: true` attribute.
@@ -139,6 +136,14 @@ placeholder: 'My name is Arthur, I want to pass this course and blue. No, yel...
 ```
 
 > Examples for all question templates can be found in the `quizzes/demo.pbm/en` folder.
+
+
+#### Random question/answer generation
+As mentioned before, there can be a python script for every different question that calculates the value of any string preceded by the sigil `$`. After the python code is executed, all variables in the yml file will be swapped for their values in the python program. Please note that:
+  * You don't need to import the random module since it will be already imported and given a seed in th jutge code.
+  * Some question types don't support multiple identyc answers, you may need to check if the random generated numbers are the same.
+> Check the demo directory for more examples and uses of this feature.
+
 
 ### Optional attributtes
 
