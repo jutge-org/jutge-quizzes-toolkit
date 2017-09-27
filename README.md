@@ -140,7 +140,7 @@ placeholder: 'My name is Arthur, I want to pass this course and blue. No, yel...
 
 #### Random question/answer generation
 As mentioned before, there can be a python script for every different question that calculates the value of any string preceded by the sigil `$`. After the python code is executed, all variables in the yml file will be swapped for their values in the python program. Please note that:
-  * You don't need to import the random module since it will be already imported and given a seed in th jutge code.
+  * You don't need to import the random module since it will be already imported and given a seed in the jutge code.
   * Some question types don't support multiple identyc answers, you may need to check if the random generated numbers are the same.
 > Check the demo directory for more examples and uses of this feature.
 
