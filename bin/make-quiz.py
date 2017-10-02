@@ -196,7 +196,9 @@ def build_q(fname, title):
     q = open(yml_name).read()
 
     # execute the code, using new global and local dictionaries
-    ldict = {}
+    def all_different(*x):
+        return len(x) == len(set(x))
+    ldict = {'all_different': all_different}
     exec(code, globals(), ldict)
 
     # modify the question description with the local dictionary
