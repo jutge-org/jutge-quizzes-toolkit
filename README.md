@@ -155,7 +155,9 @@ shuffle: False
 > In this case the questions will always appear in the same order as in the `quiz.yml` file.
 
 #### Questions
-* Shuffle: The shuffle attribute will change the order of the question's choices or options.
->Does not apply to Ordering, Matching or Open questions.
+* Shuffle: The `shuffle` attribute will change the order of the question's choices or options.
+  > Does **not** apply to Ordering, Matching or Open questions.
+* Partial answer: The attribute `partial_answer` will divide the question's score by all the possible answers and take into account a partial correct answer. The default value of this attribute is `false`.
+  > Only applies to Multiple Choice, Fill-in and Matching questions.
 
 
