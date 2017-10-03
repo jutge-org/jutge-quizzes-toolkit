@@ -3,6 +3,8 @@ type: Matching
 
 text: Match the countries with their capitals.
 
+partial_answer: true
+
 labels:
     - Countries
     - Capitals

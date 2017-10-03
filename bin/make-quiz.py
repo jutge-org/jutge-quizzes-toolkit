@@ -257,7 +257,6 @@ def main():
 
     #Check types
     check_not_dict_list(quiz.get("statement"), "Quiz", "Statement", "text")
-    check_not_dict_list(quiz.get("title"), "Quiz", "Title", "text")
 
     score_sum = 0
     for question in quiz['questions']:
