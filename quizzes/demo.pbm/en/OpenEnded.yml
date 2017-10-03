@@ -1,6 +1,6 @@
 
 type: OpenQuestion
 
-text: Talk about your self.
+text: Talk about yourself.  ![](FIG_DIR/award.png)
 
 placeholder: 'My name is **$name** and I want to pass this course.'
