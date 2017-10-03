@@ -160,4 +160,6 @@ shuffle: False
 * Partial answer: The attribute `partial_answer` will divide the question's score by all the possible answers and take into account a partial correct answer. The default value of this attribute is `false`.
   > Only applies to Multiple Choice, Fill-in and Matching questions.
 
-
+### Images
+You can add images to quiz statements. In rder to do so, use the following code `![](FIG_DIR/yourimage.png)`.All images must have the `.png` extension and they have to be placed directly inside the quiz directory. Please note that the `FIG_DIR/` prefix is mandatory in order for the jutge to be able to diplay the image.
+> More examples of this feature in the demo quiz directory.
