@@ -155,7 +155,11 @@ shuffle: False
 > In this case the questions will always appear in the same order as in the `quiz.yml` file.
 
 #### Questions
-* Shuffle: The shuffle attribute will change the order of the question's choices or options.
->Does not apply to Ordering, Matching or Open questions.
+* Shuffle: The `shuffle` attribute will change the order of the question's choices or options.
+  > Does **not** apply to Ordering, Matching or Open questions.
+* Partial answer: The attribute `partial_answer` will divide the question's score by all the possible answers and take into account a partial correct answer. The default value of this attribute is `false`.
+  > Only applies to Multiple Choice, Fill-in and Matching questions.
 
-
+### Images
+You can add images to quiz statements. In rder to do so, use the following code `![](FIG_DIR/yourimage.png)`.All images must have the `.png` extension and they have to be placed directly inside the same directory as the language's `.yml` files. Please note that the `FIG_DIR/` prefix is mandatory in order for the jutge to be able to diplay the image.
+> More examples of this feature in the demo quiz directory.
