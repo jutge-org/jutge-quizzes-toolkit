@@ -261,8 +261,11 @@ def main():
     score_sum = 0
     for question in quiz['questions']:
         score = question.get("score", 0)
+        weight = question.get("weight", 1) 
         if not isinstance(score,int) or score <= 0:
             error("quiz", "All scores must be positive integers")
+        if not isinstance(weight,int) or weight <= 0:
+            error("quiz", "All weights must be positive integers")
         score_sum += score
         if not question.get("file", False) or not question.get("title", False):
             error("quiz","All questions need a file and a title!")

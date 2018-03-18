@@ -8,6 +8,7 @@ questions:
     -   title:  Single choice question
         file:   SingleChoice
         score:  10
+        weight: 2
 
     -   title:  Multiple choice question
         file:   MultipleChoice
