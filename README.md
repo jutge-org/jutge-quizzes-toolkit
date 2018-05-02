@@ -163,3 +163,7 @@ shuffle: False
 ### Images
 You can add images to quiz statements. In rder to do so, use the following code `![](FIG_DIR/yourimage.png)`.All images must have the `.png` extension and they have to be placed directly inside the same directory as the language's `.yml` files. Please note that the `FIG_DIR/` prefix is mandatory in order for the jutge to be able to diplay the image.
 > More examples of this feature in the demo quiz directory.
+
+### Maths
+
+You can use LaTeX mathematics in the quiz statements. Just write LaTeX formulas between high dots, such as ·\sqrt{x^2+y^2}·. The system uses [MathJax](https://www.mathjax.org/) to display the formulas.
