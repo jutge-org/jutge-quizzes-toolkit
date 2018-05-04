@@ -91,13 +91,13 @@ choices:
     * `placeholder`: `OPTIONAL` text to display when the answer is blank. Default is `?`.
     * `ignorecase`: `OPTIONAL` indicates whether to ignore the case of the answer or not. Default is `true`.
     * `trim`: `OPTIONAL` indicates whether to ignore the blanks before and after the answer. Default is `true`.
-  
+
     A dropdown list of items has the following attributes:
       * `correct`: describes the correct answer.
       * `options`: a list of all the other possible answers that are not correct.
-      
+
   > For code examples on FillIn questions please check the `quizzes/demo.pbm/en` folder.
-      
+
 * `Ordering`: A question with a list of `items` that has to be permutated to a specific order. The `label` attribute expects a text which will be the title of the box containing the items.
 ```yml
 type: Ordering
@@ -131,7 +131,7 @@ right:
 * `OpenQuestion`: A simple text field where anything can be written. The open question has only a `placeholder` attribute which is the text dsplayed in the answer box as a hint to the student.
 ```yml
 type: OpenQuestion
-text: What is your name/quest/favourite color? 
+text: What is your name/quest/favourite color?
 placeholder: 'My name is Arthur, I want to pass this course and blue. No, yel... '
 ```
 
@@ -167,3 +167,10 @@ You can add images to quiz statements. In rder to do so, use the following code 
 ### Maths
 
 You can use LaTeX mathematics in the quiz statements. Just write LaTeX formulas between high dots, such as ·\sqrt{x^2+y^2}·. The system uses [MathJax](https://www.mathjax.org/) to display the formulas.
+
+### Hide scores
+
+You can hide the sccore of a particular question in the quiz by setting
+```yml
+hide_score: true
+```
