@@ -9,18 +9,18 @@ version = "1.3"
 
 
 setup(
-    name='jutge-problems-toolkit',
-    packages=['jutge_problems_toolkit'],
+    name='jutge-quizzes-toolkit',
+    packages=['src'],
     install_requires=['pyyaml>=5.1', 'colorama'],
     version=version,
-    description='Toolkit to create problems for Jutge.org',
-    long_description='Toolkit to create problems for Jutge.org',
+    description='Toolkit to create quizzes for Jutge.org',
+    long_description='Toolkit to create quizzes for Jutge.org',
     author='Jordi Petit et al',
     author_email='jpetit@cs.upc.edu',
-    url='https://github.com/jutge-org/jutge-problems-toolkit',
-    download_url='https://github.com/jutge-org/jutge-problems-toolkit/tarball/{}'.format(
+    url='https://github.com/jutge-org/jutge-quizzes-toolkit',
+    download_url='https://github.com/jutge-org/jutge-quizzes-toolkit/tarball/{}'.format(
         version),
-    keywords=['jutge', 'jutge.org', 'education', 'problems', 'toolkit'],
+    keywords=['jutge', 'jutge.org', 'education', 'problems', 'quizzes', 'toolkit'],
     license='Apache',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -39,7 +39,22 @@ setup(
     include_package_data=True,
     setup_requires=['setuptools'],
     entry_points={'console_scripts': [
-        'jutge-problems-toolkit=jutge_problems_toolkit:main']}
+        'make-quiz=src:main']}
 )
 
 print(os.path.abspath(__file__))
+
+
+
+# Steps to distribute new version:
+#
+# git commit -a
+# git push
+# git tag 1.12345 -m "Release 1.12345"
+# git push --tags origin master
+# python3 setup.py sdist bdist_wheel
+# python3 -m twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+#
+# More docs:
+# http://peterdowns.com/posts/first-time-with-pypi.html
+# https://medium.com/@joel.barmettler/how-to-upload-your-python-package-to-pypi-65edc5fe9c56
