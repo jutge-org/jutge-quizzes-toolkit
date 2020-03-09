@@ -5,7 +5,7 @@ import os
 from setuptools import setup
 from glob import glob
 
-version = "1.3"
+version = "1.4"
 
 
 setup(
