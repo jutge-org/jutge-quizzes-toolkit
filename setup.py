@@ -5,7 +5,7 @@ import os
 from setuptools import setup
 from glob import glob
 
-version = "1.4"
+version = "1.0.1"
 
 
 setup(
@@ -48,6 +48,7 @@ print(os.path.abspath(__file__))
 
 # Steps to distribute new version:
 #
+# increment version
 # git commit -a
 # git push
 # git tag 1.12345 -m "Release 1.12345"
