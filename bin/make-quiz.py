@@ -205,7 +205,7 @@ def build_q(fname, title):
     subs = string.Template(q).substitute(ldict)
 
     # get the text back to data
-    output = yaml.load(subs)
+    output = yaml.load(subs, Loader=yaml.FullLoader)
     #make sure we have the mandatory attributes
     text = output.get("text")
     if text == None:
@@ -245,7 +245,7 @@ def check_list(thing,title,name):
 
 def main():
     seed = int(sys.argv[1])
-    quiz = yaml.load(open("quiz.yml"))
+    quiz = yaml.load(open("quiz.yml"), Loader=yaml.FullLoader)
 
     random.seed(seed)
 
